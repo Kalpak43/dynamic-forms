@@ -407,7 +407,7 @@ function InputField({
             ) : (
               <>
                 <Input
-                  value={new Date(value).toLocaleDateString("en-GB") || ""}
+                  value={value || ""}
                   onChange={handleChange}
                   type={"text"}
                   disabled={disabled}

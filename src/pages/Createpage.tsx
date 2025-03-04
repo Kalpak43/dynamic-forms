@@ -45,6 +45,7 @@ import { Description } from "@mui/icons-material";
 import InputField from "../components/InputField";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import { downloadCSV } from "../utils";
 
 function Createpage() {
   const { templateId } = useParams();
@@ -275,7 +276,7 @@ export const EditForm = ({ templateId }: { templateId: string }) => {
             formTemplate: template,
           })
         );
-      }, 5000);
+      }, 1000);
     }
   }, [template]);
 
@@ -592,10 +593,19 @@ export const ResponseTab = ({
     <main>
       <div className="space-y-4 max-w-3xl mx-auto">
         <Card>
-          <CardContent>
+          <CardContent className="flex items-center justify-between gap-2">
             <Typography variant="h4">
               {responses && <p>{responses.length} responses</p>}
             </Typography>
+            <Button
+              size="small"
+              variant="contained"
+              onClick={() => {
+                downloadCSV(template, responses);
+              }}
+            >
+              Download as CSV
+            </Button>
           </CardContent>
           <Tabs value={activeTab} onChange={handleTabChange} centered>
             <Tab label="Summary" />
