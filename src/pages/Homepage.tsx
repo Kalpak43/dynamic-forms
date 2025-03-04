@@ -269,11 +269,12 @@ function Homepage() {
           variant="h5"
           sx={{
             marginBottom: "0.5rem",
+            color: (theme) => theme.palette.primary.main,
           }}
         >
           Start a New Form
         </Typography>
-        <div className="grid grid-cols-2 xl:grid-cols-5 gap-8">
+        <div className="grid grid-cols-2 xl:grid-cols-5 gap-2 md:gap-8">
           <Card
             className="cursor-pointer relative border border-gray-300"
             sx={{
@@ -455,6 +456,7 @@ function Homepage() {
           variant="h5"
           sx={{
             marginBottom: "0.5rem",
+            color: (theme) => theme.palette.primary.main,
           }}
         >
           Recent forms
