@@ -24,7 +24,7 @@ import {
   Draggable,
   DropResult,
 } from "@hello-pangea/dnd";
-import DragHandleIcon from '@mui/icons-material/DragHandle';
+import DragHandleIcon from "@mui/icons-material/DragHandle";
 import { editTemplate } from "../features/forms/formThunk";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import ImageIcon from "@mui/icons-material/Image";
@@ -229,7 +229,7 @@ function Createpage() {
             {/* <Tab label="Support Questions" /> */}
           </Tabs>
         </AppBar>
-        <div className="">
+        <div className="p-4">
           {template && (
             <Box>
               {activeTab === 0 && (
@@ -237,8 +237,8 @@ function Createpage() {
                 // <p>Edit</p>
               )}
               {activeTab === 1 && (
-                // <ResponseTab template={template} setTemplate={setTemplate} />
-                <p>Response</p>
+                <ResponseTab template={template} setTemplate={setTemplate} />
+                // <p>Response</p>
               )}
             </Box>
           )}
@@ -342,7 +342,6 @@ export const EditForm = ({ templateId }: { templateId: string }) => {
     if (!result.destination) return;
 
     if (!template) return template;
-    console.log("ENDED ");
     const newFields = Array.from(template.fields);
     const [removed] = newFields.splice(result.source.index, 1);
     newFields.splice(result.destination.index, 0, removed);
@@ -493,17 +492,12 @@ export const EditForm = ({ templateId }: { templateId: string }) => {
                                     .files?.[0];
                                   if (file) {
                                     // Handle the image file here
-                                    console.log("Selected image:", file);
                                     // You can use FileReader to read the image as a data URL
                                     const reader = new FileReader();
                                     reader.onloadend = () => {
                                       const imageDataUrl =
                                         reader.result as string;
                                       // Now you can use imageDataUrl to display the image or upload it
-                                      console.log(
-                                        "Image data URL:",
-                                        imageDataUrl
-                                      );
                                       // You might want to store the image data URL in the field state
                                       handleFieldChange(
                                         field.id,

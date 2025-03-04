@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import FileInput from "./FileInput";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SignaturePadInput from "./SignaturePad";
 import Modal from "@mui/material/Modal";
 
@@ -72,8 +72,6 @@ function InputField({
       return null;
     }
   };
-
-  useEffect(() => console.log(value), [value]);
 
   return (
     <Card variant="outlined" sx={{ width: "100%" }} className="shadow-sm">
@@ -349,7 +347,6 @@ function InputField({
 
                           reader.onloadend = () => {
                             const base64String = reader.result as string;
-                            console.log("Base64 String:", base64String);
                             // You can store base64String in state or send it to an API
                             onChange(base64String);
                           };
@@ -375,7 +372,12 @@ function InputField({
                     p: 4,
                   }}
                 >
-                  <SignaturePadInput saveSign={onChange} />
+                  <SignaturePadInput
+                    saveSign={(x: string) => {
+                      onChange(x);
+                      setOpen(false);
+                    }}
+                  />
                 </Box>
               </Modal>
 

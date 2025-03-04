@@ -129,13 +129,9 @@ function Formpage() {
     handleSubmit,
     reset,
     control, // Use control instead of register
-    watch,
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
-
-  const watchedValues = watch();
-  console.log(watchedValues);
 
   useEffect(() => {
     const template = templates.find((template) => template.id === formId);
@@ -152,8 +148,6 @@ function Formpage() {
   };
 
   const onSubmit = async (data: { [key: string]: any }) => {
-    console.log("Form submitted:", data);
-
     const processedData = { ...data };
 
     // Convert file fields to Base64
@@ -172,8 +166,6 @@ function Formpage() {
         }
       }
     }
-
-    console.log(processedData);
 
     if (formId && processedData) {
       const rId = uuidv4();
