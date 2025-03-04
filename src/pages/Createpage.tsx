@@ -56,12 +56,14 @@ function Createpage() {
 
   useEffect(() => {
     if (template) {
-      dispatch(
-        editTemplate({
-          id: template.id,
-          formTemplate: template,
-        })
-      );
+      setTimeout(() => {
+        dispatch(
+          editTemplate({
+            id: template.id,
+            formTemplate: template,
+          })
+        );
+      }, 1000);
     }
   }, [template]);
 
@@ -234,7 +236,7 @@ function Createpage() {
           {template && (
             <Box>
               {activeTab === 0 && (
-                <EditForm templateId={templateId!} />
+                <EditForm template={template} setTemplate={setTemplate} />
                 // <p>Edit</p>
               )}
               {activeTab === 1 && (
@@ -251,34 +253,14 @@ function Createpage() {
 
 export default Createpage;
 
-export const EditForm = ({ templateId }: { templateId: string }) => {
-  const dispatch = useAppDispatch();
-
-  const { templates } = useAppSelector((state) => state.form);
-
-  const [template, setTemplate] = useState<FormTemplate | null>(null);
+export const EditForm = ({
+  template,
+  setTemplate,
+}: {
+  template: FormTemplate;
+  setTemplate: React.Dispatch<React.SetStateAction<FormTemplate | null>>;
+}) => {
   const [focusedField, setFocusedField] = useState<string | null>(null);
-
-  useEffect(() => {
-    templates.forEach((template) => {
-      if (template.id === templateId) {
-        setTemplate(template);
-      }
-    });
-  }, [templateId]);
-
-  useEffect(() => {
-    if (template) {
-      setTimeout(() => {
-        dispatch(
-          editTemplate({
-            id: template.id,
-            formTemplate: template,
-          })
-        );
-      }, 1000);
-    }
-  }, [template]);
 
   const addField = (after: string, data: FormFieldType) => {
     if (!template) return;
