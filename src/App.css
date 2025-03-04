@@ -1,0 +1,10 @@
+main {
+  padding-inline: 4rem;
+  padding-block: 2rem;
+}
+
+@media screen and (max-width: 767px) {
+  main {
+    padding-inline: 1rem;
+  }
+}

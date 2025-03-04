@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+.MuiInputBase-input.Mui-disabled {
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
+}
+
+.MuiCheckbox-root.Mui-disabled,
+.MuiRadio-root.Mui-disabled {
+  color: #000 !important;
+}
+.MuiCheckbox-root.Mui-checked.Mui-disabled,
+.MuiRadio-root.Mui-checked.Mui-disabled {
+  color: #000 !important;
+}
