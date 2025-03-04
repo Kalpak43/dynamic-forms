@@ -40,3 +40,19 @@ interface FormTemplate {
   published?: boolean;
   responses: FormResponseType[];
 }
+
+interface EmptyFormTemplate {
+  createdAt: number;
+  title: string;
+  description: string | null;
+  fields: FormField[];
+  theme?: {
+    palette: {
+      primary: {
+        main: string;
+      };
+    };
+  };
+  published?: boolean;
+  responses: FormResponseType[];
+}

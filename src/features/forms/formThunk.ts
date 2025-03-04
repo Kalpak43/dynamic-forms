@@ -3,8 +3,13 @@ import { v4 as uuidv4 } from "uuid";
 
 export const createNewTemplate = createAsyncThunk(
   "forms/createNewTemplate",
-  async (id: string, { rejectWithValue }) => {
+  async (
+    { id, predefined }: { id: string; predefined?: FormTemplate },
+    { rejectWithValue }
+  ) => {
     try {
+      if (predefined) return predefined;
+
       const newFormTemplate: FormTemplate = {
         createdAt: new Date().getTime(),
         id: id,

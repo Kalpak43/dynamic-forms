@@ -13,7 +13,7 @@ function Header() {
 
   const handleCreateForm = async () => {
     const id = uuidv4();
-    await dispatch(createNewTemplate(id));
+    await dispatch(createNewTemplate({ id }));
 
     navigate(`/edit/${id}`);
   };

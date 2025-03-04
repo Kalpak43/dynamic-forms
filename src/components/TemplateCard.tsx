@@ -44,7 +44,12 @@ function TemplateCard({
   return (
     <Card
       key={template.id}
-      className="cursor-pointer relative"
+      className="cursor-pointer relative border border-gray-300"
+      sx={{
+        "&:hover": {
+          borderColor: (theme) => theme.palette.primary.main,
+        },
+      }}
       onClick={() => navigate(`/edit/${template.id}`)}
     >
       <CardContent
