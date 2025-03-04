@@ -3,6 +3,7 @@ import { deleteTemplate } from "../features/forms/formThunk";
 import TemplateCard from "../components/TemplateCard";
 import { useEffect } from "react";
 import { sortTemplates } from "../features/forms/formSlice";
+import { Typography } from "@mui/material";
 
 function Homepage() {
   const dispatch = useAppDispatch();
@@ -22,7 +23,9 @@ function Homepage() {
 
   return (
     <main className="">
-      <p>Recent Forms</p>
+      <Typography variant="h6" sx={{
+        marginBottom: "0.5rem"
+      }}>Recent forms</Typography>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {templates.map((template) => (
           <TemplateCard

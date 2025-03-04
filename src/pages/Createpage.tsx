@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { MouseEvent, useEffect, useState } from "react";
+import { MouseEvent as ReactMouseEvent, useEffect, useState } from "react";
 import {
   alpha,
   Box,
@@ -66,7 +66,7 @@ function Createpage() {
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-  const handleMenuOpen = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleMenuOpen = (event: ReactMouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     event.stopPropagation(); // Prevents card click event
     setAnchorEl(event.currentTarget);
@@ -724,6 +724,8 @@ export const ResponseTab = ({
                                     );
                                     display = "Invalid Signature";
                                   }
+                                } else if (field.type === "checkbox") {
+                                  display = answer.join(", ");
                                 }
 
                                 return (

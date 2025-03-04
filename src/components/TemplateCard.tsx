@@ -53,7 +53,7 @@ function TemplateCard({
         }}
       >
         <div>
-          <h3 className="text-lg font-semibold">{template.title}</h3>
+          <h3 className=" font-semibold">{template.title}</h3>
           <p className="text-gray-700 text-sm">
             {new Date(template.createdAt).toLocaleDateString()}{" "}
             {new Date(template.createdAt).toLocaleTimeString()}
