@@ -26,7 +26,12 @@ function Header() {
             <Apps />
           </IconButton> */}
           <Link to={"/"} className="flex items-center space-x-2">
-            <Description className="text-black text-3xl" />
+            <Description
+              className=" text-4xl"
+              sx={{
+                color: (theme) => theme.palette.primary.main,
+              }}
+            />
             <Typography variant="h6" className="font-medium text-black">
               Forms
             </Typography>

@@ -370,6 +370,7 @@ function InputField({
                     bgcolor: "background.paper",
                     boxShadow: 24,
                     p: 4,
+                    borderRadius: "0.5rem"
                   }}
                 >
                   <SignaturePadInput
