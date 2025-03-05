@@ -33,6 +33,7 @@ function FAQpage() {
               component="span"
               sx={{
                 fontWeight: 600,
+                color: (theme) => theme.palette.secondary.dark,
               }}
             >
               Creating a form
@@ -55,6 +56,7 @@ function FAQpage() {
               component="span"
               sx={{
                 fontWeight: 600,
+                color: (theme) => theme.palette.secondary.dark,
               }}
             >
               Editing the Form
@@ -83,6 +85,7 @@ function FAQpage() {
               component="span"
               sx={{
                 fontWeight: 600,
+                color: (theme) => theme.palette.secondary.dark,
               }}
             >
               Previewing the form
@@ -106,6 +109,7 @@ function FAQpage() {
               component="span"
               sx={{
                 fontWeight: 600,
+                color: (theme) => theme.palette.secondary.dark,
               }}
             >
               Saving the form
@@ -128,6 +132,7 @@ function FAQpage() {
               component="span"
               sx={{
                 fontWeight: 600,
+                color: (theme) => theme.palette.secondary.dark,
               }}
             >
               Publishing/Sharing the form
@@ -153,6 +158,7 @@ function FAQpage() {
               component="span"
               sx={{
                 fontWeight: 600,
+                color: (theme) => theme.palette.secondary.dark,
               }}
             >
               Viewing the responses
@@ -179,6 +185,7 @@ function FAQpage() {
               component="span"
               sx={{
                 fontWeight: 600,
+                color: (theme) => theme.palette.secondary.dark,
               }}
             >
               Deleting a form
