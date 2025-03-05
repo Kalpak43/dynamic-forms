@@ -5,7 +5,7 @@ import Homepage from "./pages/Homepage";
 import Createpage from "./pages/Createpage";
 import Formpage from "./pages/Formpage";
 import { Toaster } from "react-hot-toast";
-import Previewpage from "./pages/PreviewPage";
+import Previewpage from "./pages/Previewpage";
 
 function App() {
   return (
