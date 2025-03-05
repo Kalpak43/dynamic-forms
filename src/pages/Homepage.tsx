@@ -461,16 +461,22 @@ function Homepage() {
         >
           Recent forms
         </Typography>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {templates.map((template) => (
-            <TemplateCard
-              key={template.id}
-              template={template}
-              onShare={handleTemplateShare}
-              onDelete={handleTemplateDelete}
-            />
-          ))}
-        </div>
+        {templates.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {templates.map((template) => (
+              <TemplateCard
+                key={template.id}
+                template={template}
+                onShare={handleTemplateShare}
+                onDelete={handleTemplateDelete}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="flex items-center justify-center min-h-[300px]">
+            No Saved Forms Found
+          </div>
+        )}
       </main>
     </div>
   );

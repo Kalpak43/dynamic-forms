@@ -450,7 +450,7 @@ export const EditForm = ({
                       <div
                         ref={provided.innerRef}
                         {...provided.draggableProps}
-                        className={`form-field-container relative flex flex-col items-center gap-2 p-2 bg-white rounded-md transition-all border-2 ${
+                        className={`form-field-container max-md:my-16 relative flex flex-col items-center gap-2 p-2 bg-white rounded-md transition-all border-2 ${
                           focusedField == field.id
                             ? `shadow-md border-gray-400`
                             : "border-transparent"
@@ -470,7 +470,77 @@ export const EditForm = ({
                           onDelete={deleteField}
                         />
 
-                        {focusedField === field.id && (
+                        <div className="max-md:hidden">
+                          {focusedField === field.id && (
+                            <ButtonGroup
+                              orientation="vertical"
+                              aria-label="Vertical button group"
+                              variant="contained"
+                              sx={{
+                                background: "#fff",
+                                position: "absolute",
+                                insetBlock: 0,
+                                height: "fit-content",
+                                left: "100%",
+                                marginInline: "0.5rem",
+                                marginTop: "auto",
+                              }}
+                            >
+                              <IconButton
+                                key={"image"}
+                                onClick={() =>
+                                  document
+                                    .getElementById(`image-upload-${field.id}`)
+                                    ?.click()
+                                }
+                              >
+                                <ImageIcon />
+                                <input
+                                  type="file"
+                                  id={`image-upload-${field.id}`}
+                                  style={{ display: "none" }}
+                                  onChange={(e) => {
+                                    const file = (e.target as HTMLInputElement)
+                                      .files?.[0];
+                                    if (file) {
+                                      // Handle the image file here
+                                      // You can use FileReader to read the image as a data URL
+                                      const reader = new FileReader();
+                                      reader.onloadend = () => {
+                                        const imageDataUrl =
+                                          reader.result as string;
+                                        // Now you can use imageDataUrl to display the image or upload it
+                                        // You might want to store the image data URL in the field state
+                                        handleFieldChange(
+                                          field.id,
+                                          "image",
+                                          imageDataUrl
+                                        ); // Assuming you add 'image' to your FormField type
+                                      };
+                                      reader.readAsDataURL(file);
+                                    }
+                                  }}
+                                  accept="image/*" // Optional: limit to image files
+                                />
+                              </IconButton>
+                              <IconButton
+                                key={"addd"}
+                                onClick={() =>
+                                  addField(field.id, {
+                                    id: uuidv4(),
+                                    type: "text",
+                                    label: "New Text",
+                                    required: false,
+                                  })
+                                }
+                              >
+                                <ControlPointIcon />
+                              </IconButton>
+                            </ButtonGroup>
+                          )}
+                        </div>
+
+                        <div className="md:hidden">
                           <ButtonGroup
                             orientation="vertical"
                             aria-label="Vertical button group"
@@ -478,65 +548,66 @@ export const EditForm = ({
                             sx={{
                               background: "#fff",
                               position: "absolute",
-                              insetBlock: 0,
+                              top: "100%",
                               height: "fit-content",
-                              left: "100%",
-                              marginInline: "0.5rem",
-                              marginTop: "auto",
+                              right: "0",
+                              marginTop: "0.5rem",
                             }}
                           >
-                            <IconButton
-                              key={"image"}
-                              onClick={() =>
-                                document
-                                  .getElementById(`image-upload-${field.id}`)
-                                  ?.click()
-                              }
-                            >
-                              <ImageIcon />
-                              <input
-                                type="file"
-                                id={`image-upload-${field.id}`}
-                                style={{ display: "none" }}
-                                onChange={(e) => {
-                                  const file = (e.target as HTMLInputElement)
-                                    .files?.[0];
-                                  if (file) {
-                                    // Handle the image file here
-                                    // You can use FileReader to read the image as a data URL
-                                    const reader = new FileReader();
-                                    reader.onloadend = () => {
-                                      const imageDataUrl =
-                                        reader.result as string;
-                                      // Now you can use imageDataUrl to display the image or upload it
-                                      // You might want to store the image data URL in the field state
-                                      handleFieldChange(
-                                        field.id,
-                                        "image",
-                                        imageDataUrl
-                                      ); // Assuming you add 'image' to your FormField type
-                                    };
-                                    reader.readAsDataURL(file);
-                                  }
-                                }}
-                                accept="image/*" // Optional: limit to image files
-                              />
-                            </IconButton>
-                            <IconButton
-                              key={"addd"}
-                              onClick={() =>
-                                addField(field.id, {
-                                  id: uuidv4(),
-                                  type: "text",
-                                  label: "New Text",
-                                  required: false,
-                                })
-                              }
-                            >
-                              <ControlPointIcon />
-                            </IconButton>
+                            <div className="flex">
+                              <IconButton
+                                key={"image"}
+                                onClick={() =>
+                                  document
+                                    .getElementById(`image-upload-${field.id}`)
+                                    ?.click()
+                                }
+                              >
+                                <ImageIcon />
+                                <input
+                                  type="file"
+                                  id={`image-upload-${field.id}`}
+                                  style={{ display: "none" }}
+                                  onChange={(e) => {
+                                    const file = (e.target as HTMLInputElement)
+                                      .files?.[0];
+                                    if (file) {
+                                      // Handle the image file here
+                                      // You can use FileReader to read the image as a data URL
+                                      const reader = new FileReader();
+                                      reader.onloadend = () => {
+                                        const imageDataUrl =
+                                          reader.result as string;
+                                        // Now you can use imageDataUrl to display the image or upload it
+                                        // You might want to store the image data URL in the field state
+                                        handleFieldChange(
+                                          field.id,
+                                          "image",
+                                          imageDataUrl
+                                        ); // Assuming you add 'image' to your FormField type
+                                      };
+                                      reader.readAsDataURL(file);
+                                    }
+                                  }}
+                                  accept="image/*" // Optional: limit to image files
+                                />
+                              </IconButton>
+                              <IconButton
+                                key={"addd"}
+                                onClick={() =>
+                                  addField(field.id, {
+                                    id: uuidv4(),
+                                    type: "text",
+                                    label: "New Text",
+                                    required: false,
+                                  })
+                                }
+                              >
+                                <ControlPointIcon />
+                              </IconButton>
+                            </div>
                           </ButtonGroup>
-                        )}
+                        </div>
                       </div>
                     )}
                   </Draggable>
@@ -613,6 +684,7 @@ export const ResponseTab = ({
               onClick={() => {
                 downloadCSV(template, responses);
               }}
+              disabled={responses.length === 0}
             >
               Download as CSV
             </Button>
