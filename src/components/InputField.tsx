@@ -370,7 +370,7 @@ function InputField({
                     bgcolor: "background.paper",
                     boxShadow: 24,
                     p: 4,
-                    borderRadius: "0.5rem"
+                    borderRadius: "0.5rem",
                   }}
                 >
                   <SignaturePadInput
@@ -415,6 +415,25 @@ function InputField({
                 />
               </>
             ))}
+
+          {data.type === "number" && (
+            <FormControl fullWidth style={{ marginTop: "1rem" }}>
+              <Input
+                value={value}
+                onChange={handleChange}
+                placeholder="Your answer"
+                type={data.type}
+                // required={data.required}
+                disabled={disabled}
+              />
+              <br />
+              {error && (
+                <FormHelperText error>
+                  <ErrorOutlineIcon fontSize="small" /> {error}
+                </FormHelperText>
+              )}
+            </FormControl>
+          )}
         </Typography>
       </CardContent>
     </Card>

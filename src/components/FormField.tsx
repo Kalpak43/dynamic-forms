@@ -51,6 +51,7 @@ function FormField({ data, onFieldChange, onDelete }: FormFieldProps) {
       | "file"
       | "sign"
       | "time"
+      | "number"
     >
   ) => {
     onFieldChange(data.id, "type", e.target.value as FormFieldType["type"]);
@@ -87,6 +88,7 @@ function FormField({ data, onFieldChange, onDelete }: FormFieldProps) {
               <MenuItem value="file">File</MenuItem>
               <MenuItem value="sign">Signature</MenuItem>
               <MenuItem value="time">Time</MenuItem>
+              <MenuItem value="number">Number</MenuItem>
             </Select>
           </FormControl>
         </div>
@@ -328,6 +330,37 @@ function FormField({ data, onFieldChange, onDelete }: FormFieldProps) {
             <FormControl fullWidth style={{ marginTop: "1rem" }}>
               <Input placeholder="Time" type={data.type} disabled />
             </FormControl>
+          )}
+          {data.type === "number" && (
+            <div className="space-y-2">
+              <div className="flex max-md:flex-col md:items-center gap-2 justify-between">
+                <FormControl fullWidth style={{ marginTop: "1rem" }}>
+                  <InputLabel htmlFor="min-input">Min</InputLabel>
+                  <Input
+                    id="min-input"
+                    placeholder="Enter a Number"
+                    type={data.type}
+                    onChange={(e) => {
+                      onFieldChange(data.id, "min", e.target.value);
+                    }}
+                  />
+                </FormControl>
+                <FormControl fullWidth style={{ marginTop: "1rem" }}>
+                  <InputLabel htmlFor="max-input">Max</InputLabel>
+                  <Input
+                    id="max-input"
+                    placeholder="Enter a Number"
+                    type={data.type}
+                    onChange={(e) => {
+                      onFieldChange(data.id, "max", e.target.value);
+                    }}
+                  />
+                </FormControl>
+              </div>
+              <FormControl fullWidth style={{ marginTop: "1rem" }}>
+                <Input placeholder="Enter a Number" type={data.type} disabled />
+              </FormControl>
+            </div>
           )}
         </div>
 

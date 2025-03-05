@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { MouseEvent as ReactMouseEvent, useEffect, useState } from "react";
 import {
@@ -46,6 +46,8 @@ import InputField from "../components/InputField";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { downloadCSV } from "../utils";
+import toast from "react-hot-toast";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 const themeColors = [
   "#ff5722",
@@ -64,6 +66,7 @@ function Createpage() {
   const { templateId } = useParams();
   const dispatch = useAppDispatch();
   const { templates } = useAppSelector((state) => state.form);
+  const navigate = useNavigate();
 
   const [template, setTemplate] = useState<FormTemplate | null>(null);
 
@@ -140,7 +143,23 @@ function Createpage() {
                   //   top: 2,
                   //   right: 2,
                   // }}
+                  onClick={() => {
+                    template && navigate(`/preview/${template.id}`);
+                  }}
+                  title="preview"
+                  onMouseDown={(event) => event.stopPropagation()} // Prevent accidental card click on mobile
+                >
+                  <VisibilityIcon />
+                </IconButton>
+                <IconButton
+                  //   className="absolute top-2 right-2"
+                  // sx={{
+                  //   position: "absolute",
+                  //   top: 2,
+                  //   right: 2,
+                  // }}
                   onClick={handleMenuOpen}
+                  title="themes"
                   onMouseDown={(event) => event.stopPropagation()} // Prevent accidental card click on mobile
                 >
                   <PaletteIcon />
@@ -189,16 +208,34 @@ function Createpage() {
                 </Menu>
               </>
               {template && template.published ? (
-                <Button
-                  variant="contained"
-                  onClick={() => {
-                    const formUrl = `${window.location.origin}/form/${template.id}`;
-                    navigator.clipboard.writeText(formUrl);
-                  }}
-                >
-                  <ShareIcon fontSize="small" className="mr-2" />
-                  Share Link
-                </Button>
+                <>
+                  <div className="max-md:hidden">
+                    <Button
+                      variant="contained"
+                      onClick={() => {
+                        const formUrl = `${window.location.origin}/form/${template.id}`;
+                        navigator.clipboard.writeText(formUrl);
+                        toast.success("Link copied to clipboard!");
+                      }}
+                    >
+                      <ShareIcon fontSize="small" className="mr-2" />
+                      Share Link
+                    </Button>
+                  </div>
+                  <div className="md:hidden">
+                    <IconButton
+                      onClick={() => {
+                        const formUrl = `${window.location.origin}/form/${template.id}`;
+                        navigator.clipboard.writeText(formUrl);
+                        toast.success("Link copied to clipboard!");
+                      }}
+                      title="share"
+                      onMouseDown={(event) => event.stopPropagation()} // Prevent accidental card click on mobile
+                    >
+                      <ShareIcon />
+                    </IconButton>
+                  </div>
+                </>
               ) : (
                 <Button
                   variant="contained"

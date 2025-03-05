@@ -10,20 +10,16 @@ import {
   Typography,
 } from "@mui/material";
 import { useParams } from "react-router";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { useAppSelector } from "../app/hooks";
 import { useEffect, useState } from "react";
 import InputField from "../components/InputField";
 import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ResponseModal from "../components/ResponseModal";
-import { saveResponse } from "../features/forms/formThunk";
-import { v4 as uuidv4 } from "uuid";
 
-function Formpage() {
+function Previewpage() {
   const { formId } = useParams();
-
-  const dispatch = useAppDispatch();
 
   const { templates } = useAppSelector((state) => state.form);
   const [currentForm, setCurrentForm] = useState<FormTemplate | null>(null);
@@ -192,19 +188,19 @@ function Formpage() {
       }
     }
 
-    if (formId && processedData) {
-      const rId = uuidv4();
-      await dispatch(
-        saveResponse({
-          formId: formId,
-          response: {
-            responseId: rId,
-            response: processedData,
-            time: new Date().getTime(),
-          } as FormResponseType,
-        })
-      );
-    }
+    // if (formId && processedData) {
+    //   const rId = uuidv4();
+    //   await dispatch(
+    //     saveResponse({
+    //       formId: formId,
+    //       response: {
+    //         responseId: rId,
+    //         response: processedData,
+    //         time: new Date().getTime(),
+    //       } as FormResponseType,
+    //     })
+    //   );
+    // }
 
     // Transform responses using field labels as keys
     const transformedResponses = currentForm?.fields.reduce((acc, field) => {
@@ -250,7 +246,7 @@ function Formpage() {
         }}
       >
         <main>
-          {currentForm && currentForm.published ? (
+          {currentForm ? (
             <form
               className="space-y-4 max-w-3xl mx-auto"
               onSubmit={handleSubmit(onSubmit)}
@@ -264,7 +260,7 @@ function Formpage() {
               >
                 <CardContent>
                   <Typography variant="h5" sx={{ mb: 1.5 }} component="div">
-                    {currentForm.title}
+                    {currentForm.title} (Preview)
                   </Typography>
                   <Typography sx={{ mb: 1.5 }} color="text.secondary">
                     {currentForm.description}
@@ -343,4 +339,4 @@ function Formpage() {
   );
 }
 
-export default Formpage;
+export default Previewpage;

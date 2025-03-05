@@ -9,13 +9,16 @@ interface FormFieldType {
     | "tel"
     | "file"
     | "sign"
-    | "time";
+    | "time"
+    | "number";
   id: string;
   label: string;
   required: boolean;
   options?: string[];
   image?: string;
   fileType?: "image" | "video" | "audio" | "doc" | "any";
+  min?: number;
+  max?: number;
 }
 
 interface FormResponseType {
