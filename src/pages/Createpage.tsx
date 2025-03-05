@@ -47,6 +47,19 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { downloadCSV } from "../utils";
 
+const themeColors = [
+  "#ff5722",
+  "#1976d2",
+  "#4caf50",
+  "#FF9800",
+  "#7F00FF",
+  "#00bcd4",
+  "#db4437",
+  "#009688",
+  "#607d8b",
+  "#9e9e9e",
+];
+
 function Createpage() {
   const { templateId } = useParams();
   const dispatch = useAppDispatch();
@@ -138,63 +151,41 @@ function Createpage() {
                   open={Boolean(anchorEl)}
                   onClose={handleMenuClose}
                 >
-                  <MenuItem
-                    onClick={() => {
-                      setTemplate(
-                        (x) =>
-                          ({
-                            ...x,
-                            theme: {
-                              palette: {
-                                primary: {
-                                  main: "#4caf50",
-                                },
-                              },
-                            },
-                          } as FormTemplate)
+                  <div className="grid grid-cols-5">
+                    {/* Container with flexbox */}
+                    {themeColors.map((color) => {
+                      return (
+                        <MenuItem
+                          key={color}
+                          sx={{
+                            width: "fit-content",
+                          }}
+                          onClick={() => {
+                            setTemplate(
+                              (x) =>
+                                ({
+                                  ...x,
+                                  theme: {
+                                    palette: {
+                                      primary: {
+                                        main: color,
+                                      },
+                                    },
+                                  },
+                                } as FormTemplate)
+                            );
+                          }}
+                        >
+                          <div
+                            className="w-6 aspect-square rounded-full"
+                            style={{
+                              backgroundColor: color,
+                            }}
+                          ></div>
+                        </MenuItem>
                       );
-                    }}
-                  >
-                    <div className="w-6 aspect-square rounded-full bg-[#4caf50]"></div>
-                  </MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      setTemplate(
-                        (x) =>
-                          ({
-                            ...x,
-                            theme: {
-                              palette: {
-                                primary: {
-                                  main: "#1976d2",
-                                },
-                              },
-                            },
-                          } as FormTemplate)
-                      );
-                    }}
-                  >
-                    <div className="w-6 aspect-square rounded-full bg-[#1976d2]"></div>
-                  </MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      setTemplate(
-                        (x) =>
-                          ({
-                            ...x,
-                            theme: {
-                              palette: {
-                                primary: {
-                                  main: "#ff5722",
-                                },
-                              },
-                            },
-                          } as FormTemplate)
-                      );
-                    }}
-                  >
-                    <div className="w-6 aspect-square rounded-full bg-[#ff5722]"></div>
-                  </MenuItem>
+                    })}
+                  </div>
                 </Menu>
               </>
               {template && template.published ? (

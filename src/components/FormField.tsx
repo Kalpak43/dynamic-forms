@@ -78,7 +78,7 @@ function FormField({ data, onFieldChange, onDelete }: FormFieldProps) {
               size="small"
             >
               <MenuItem value="text">Text</MenuItem>
-              <MenuItem value="textarea">Textarea</MenuItem>
+              <MenuItem value="textarea">Paragraph</MenuItem>
               <MenuItem value="date">Date</MenuItem>
               <MenuItem value="radio">Radio</MenuItem>
               <MenuItem value="checkbox">Checkbox</MenuItem>
