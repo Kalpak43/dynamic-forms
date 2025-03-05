@@ -708,6 +708,7 @@ export const ResponseTab = ({
                     <TableHead>
                       <TableRow className="divide-x-1 divide-gray-300">
                         {/* Map each question as a header */}
+                        <TableCell>Submission Time</TableCell>
                         <TableCell>Response ID</TableCell>
                         {template.fields.map((field) => (
                           <TableCell key={field.id}>{field.label}</TableCell>
@@ -722,6 +723,11 @@ export const ResponseTab = ({
                               key={resp.responseId}
                               className="divide-x-1 divide-gray-300"
                             >
+                              <TableCell>
+                                {new Date(resp.time).toLocaleDateString() +
+                                  " " +
+                                  new Date(resp.time).toLocaleTimeString()}
+                              </TableCell>
                               <TableCell>{resp.responseId}</TableCell>
                               {template.fields.map((field) => {
                                 const answer = resp.response[field.id];

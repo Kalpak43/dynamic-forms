@@ -5,12 +5,18 @@ export const downloadCSV = (
   if (!responses.length) return;
 
   const headers: string[] = [
+    "Submission time",
     "Response ID",
     ...template.fields.map((field) => field.label),
   ];
 
   const csvRows: string[][] = responses.map((resp) => {
     return [
+      String(
+        new Date(resp.time).toLocaleDateString() +
+          " " +
+          new Date(resp.time).toLocaleTimeString()
+      ),
       String(resp.responseId),
       ...template.fields.map((field) => {
         const answer = resp.response[field.id];
