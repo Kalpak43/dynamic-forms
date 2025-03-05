@@ -260,7 +260,7 @@ function Previewpage() {
               >
                 <CardContent>
                   <Typography variant="h5" sx={{ mb: 1.5 }} component="div">
-                    {currentForm.title} (Preview)
+                    {currentForm.title} <strong>(Preview)</strong>
                   </Typography>
                   <Typography sx={{ mb: 1.5 }} color="text.secondary">
                     {currentForm.description}
@@ -299,14 +299,14 @@ function Previewpage() {
                       value={value}
                       onChange={onChange}
                       error={error?.message as string}
-                      disabled={false}
+                      disabled={true}
                     />
                   )}
                 />
               ))}
 
               <div className="flex items-center justify-between">
-                <Button type="submit" variant="contained">
+                <Button type="submit" variant="contained" disabled>
                   Submit
                 </Button>
                 <Button

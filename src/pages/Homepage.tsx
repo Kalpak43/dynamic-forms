@@ -274,7 +274,7 @@ function Homepage() {
         >
           Start a New Form
         </Typography>
-        <div className="grid grid-cols-2 xl:grid-cols-5 gap-2 md:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2 md:gap-8">
           <Card
             className="cursor-pointer relative border border-gray-300"
             sx={{
